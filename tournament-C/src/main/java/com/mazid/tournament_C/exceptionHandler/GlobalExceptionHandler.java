@@ -19,6 +19,17 @@ public class GlobalExceptionHandler {
         response.put("error", "Bad Request");
         response.put("message", ex.getMessage());
 
+        return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(ExpiredDateException.class)
+    public ResponseEntity<Map<String, Object>> handleExpiredDateException(ExpiredDateException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Bad Request");
+        response.put("message", ex.getMessage());
+
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
@@ -28,8 +39,8 @@ public class GlobalExceptionHandler {
         response.put("timestamp", LocalDateTime.now());
         response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
         response.put("error", "Internal Server Error");
-        response.put("message", "Something went wrong! Please try again later.");
+        response.put("message", "An unexpected error occurred. Please contact support if the issue persists.");
 
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
