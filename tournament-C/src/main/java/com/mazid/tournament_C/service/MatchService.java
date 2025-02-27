@@ -4,6 +4,8 @@ import com.mazid.tournament_C.model.Match;
 import com.mazid.tournament_C.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MatchService {
 
@@ -53,15 +55,17 @@ public class MatchService {
                     }
                     return matchRepository.save(existingMatch);
                 })
-                .orElseThrow(() -> new IllegalArgumentException("Match with ID " + matchId + " not found!"));
+                .orElseThrow(() -> new NullPointerException("Match with ID " + matchId + " not found!"));
     }
 
-
     public String deleteMatch(Integer matchId) {
-        if (matchRepository.findById(matchId).isPresent()){
-            matchRepository.deleteById(matchId);
-            return "Match delete successful";
+        Optional<Match> matchOptional = matchRepository.findById(matchId);
+
+        if (matchOptional.isEmpty()) {
+            throw new NullPointerException("Match with ID " + matchId + " not found!");
         }
-        return "Match not successful";
+
+        matchRepository.deleteById(matchId);
+        return "Match deleted successfully";
     }
 }

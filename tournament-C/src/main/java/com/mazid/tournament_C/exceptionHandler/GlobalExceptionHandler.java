@@ -22,6 +22,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(response);
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<Map<String, Object>> handleIllegalArgumentException(NullPointerException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.NOT_FOUND.value());
+        response.put("error", "Not Found");
+        response.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
     @ExceptionHandler(ExpiredDateException.class)
     public ResponseEntity<Map<String, Object>> handleExpiredDateException(ExpiredDateException ex) {
         Map<String, Object> response = new HashMap<>();
