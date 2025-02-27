@@ -27,8 +27,20 @@ public class MatchController {
                 </ul>""";
     }
 
-    @PostMapping("/match")
+    @PostMapping("/CreateMatch")
     public Match createMatch(@RequestBody Match match) {
-        return matchService.saveMatch(match);
+        return matchService.createMatch(match);
     }
+
+    @PutMapping("/UpdateMatch/{matchId}")
+    public Match updateMatch(@PathVariable Integer matchId, @RequestBody Match match) {
+        return matchService.updateMatch(matchId,match);
+    }
+
+    @DeleteMapping("/DeleteMatch/{matchId}")
+    public String deleteMatch(@PathVariable Integer matchId){
+        return matchService.deleteMatch(matchId);
+    }
+
+
 }

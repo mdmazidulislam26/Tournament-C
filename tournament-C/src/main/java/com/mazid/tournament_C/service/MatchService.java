@@ -13,7 +13,7 @@ public class MatchService {
         this.matchRepository = matchRepository;
     }
 
-    public Match saveMatch(Match match) {
+    public Match createMatch(Match match) {
         if (match == null) {
             throw new IllegalArgumentException("Match object cannot be null");
         }
@@ -37,5 +37,31 @@ public class MatchService {
         match.validateMatchDate();
 
         return matchRepository.save(match);
+    }
+
+    public Match updateMatch(Integer matchId, Match match) {
+
+        match.validateMatchDate();
+
+        return matchRepository.findById(matchId)
+                .map(existingMatch -> {
+                    if (match.getPlays() != null && match.getPlays() > 0) {
+                        existingMatch.setPlays(match.getPlays());
+                    }
+                    if (match.getDate() != null) {
+                        existingMatch.setDate(match.getDate());
+                    }
+                    return matchRepository.save(existingMatch);
+                })
+                .orElseThrow(() -> new IllegalArgumentException("Match with ID " + matchId + " not found!"));
+    }
+
+
+    public String deleteMatch(Integer matchId) {
+        if (matchRepository.findById(matchId).isPresent()){
+            matchRepository.deleteById(matchId);
+            return "Match delete successful";
+        }
+        return "Match not successful";
     }
 }
