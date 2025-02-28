@@ -1,5 +1,6 @@
 package com.mazid.tournament_C.controller;
 
+import com.mazid.tournament_C.dto.MatchDTO;
 import com.mazid.tournament_C.model.Match;
 import com.mazid.tournament_C.service.MatchService;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +29,8 @@ public class MatchController {
     }
 
     @GetMapping("/home")
-    public List<Match> getAllMatches() {
-        return matchService.home(); // Fetch all matches from DB
+    public List<MatchDTO> getAllMatches() {
+        return matchService.getAllMatches();
     }
 
     @PostMapping("/CreateMatch")

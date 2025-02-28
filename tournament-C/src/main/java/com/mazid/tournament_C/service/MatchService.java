@@ -1,5 +1,6 @@
 package com.mazid.tournament_C.service;
 
+import com.mazid.tournament_C.dto.MatchDTO;
 import com.mazid.tournament_C.model.Match;
 import com.mazid.tournament_C.repository.MatchRepository;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class MatchService {
         return matchRepository.save(match);
     }
 
-    public List<Match> home() {
-        return matchRepository.findAll();
+    public List<MatchDTO> getAllMatches() {
+        return matchRepository.findAllMatches();
     }
 
     public Match updateMatch(Integer matchId, Match match) {
