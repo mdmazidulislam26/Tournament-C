@@ -33,7 +33,6 @@ public class Match {
         }
     }
 
-
     public void generateMatchName() {
         this.matchName = firstTeam + " vs " + secondTeam;
     }
