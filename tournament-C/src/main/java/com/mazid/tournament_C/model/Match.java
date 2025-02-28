@@ -19,12 +19,12 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer matchId;
-    private String matchName;
     private String firstTeam;
     private String secondTeam;
-    private Integer plays;
-    private Integer overs;
+    private String matchName = firstTeam + " vs " + secondTeam;;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
     public void validateMatchDate() {
@@ -36,4 +36,6 @@ public class Match {
     public void generateMatchName() {
         this.matchName = firstTeam + " vs " + secondTeam;
     }
+
+
 }

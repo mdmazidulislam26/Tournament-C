@@ -4,6 +4,7 @@ import com.mazid.tournament_C.model.Match;
 import com.mazid.tournament_C.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -26,20 +27,17 @@ public class MatchService {
         if (match.getSecondTeam() == null || match.getSecondTeam().trim().isEmpty()) {
             throw new IllegalArgumentException("Second team name cannot be null or empty");
         }
-        if (match.getPlays() == null || match.getPlays() <= 0) {
-            throw new IllegalArgumentException("Number of players (plays) must be greater than 0");
-        }
-        if (match.getOvers() == null || match.getOvers() <= 0) {
-            throw new IllegalArgumentException("Overs must be greater than 0");
-        }
         if (match.getDate() == null) {
             throw new IllegalArgumentException("Match date cannot be null");
         }
-
-        match.generateMatchName();
         match.validateMatchDate();
+        match.generateMatchName();
 
         return matchRepository.save(match);
+    }
+
+    public List<Match> home() {
+        return matchRepository.findAll();
     }
 
     public Match updateMatch(Integer matchId, Match match) {
@@ -48,9 +46,6 @@ public class MatchService {
 
         return matchRepository.findById(matchId)
                 .map(existingMatch -> {
-                    if (match.getPlays() != null && match.getPlays() > 0) {
-                        existingMatch.setPlays(match.getPlays());
-                    }
                     if (match.getDate() != null) {
                         existingMatch.setDate(match.getDate());
                     }
@@ -69,4 +64,8 @@ public class MatchService {
         matchRepository.deleteById(matchId);
         return "Match deleted successfully";
     }
+
+
+
 }
+

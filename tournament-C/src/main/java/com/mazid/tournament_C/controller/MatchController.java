@@ -4,6 +4,8 @@ import com.mazid.tournament_C.model.Match;
 import com.mazid.tournament_C.service.MatchService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class MatchController {
 
@@ -13,7 +15,7 @@ public class MatchController {
         this.matchService = matchService;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String initController() {
         return """
                 <h1>Tournament C</h1>
@@ -21,10 +23,13 @@ public class MatchController {
                 <ul>
                 <li> First Team Name</li>
                 <li> Second Team Name</li>
-                <li> How many overs</li>
-                <li> How many players in a team</li>
                 <li> Match Date</li>
                 </ul>""";
+    }
+
+    @GetMapping("/home")
+    public List<Match> getAllMatches() {
+        return matchService.home(); // Fetch all matches from DB
     }
 
     @PostMapping("/CreateMatch")
