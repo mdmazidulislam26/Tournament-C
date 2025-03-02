@@ -32,11 +32,10 @@ public class PlayerService {
         if (player.getPlayerEmail() == null || player.getPlayerEmail().trim().isEmpty()) {
             throw new IllegalArgumentException("Player email cannot be null or empty");
         }
-        if (!player.getPlayerEmail().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}")) {
+        if (!player.getPlayerEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
             throw new IllegalArgumentException("Invalid email format");
         }
         player.setPlayerEmail(player.getPlayerEmail().toLowerCase());
-        System.err.println(player.getDOB());
         if (player.getDOB() == null) {
             throw new IllegalArgumentException("Date of birth cannot be null");
         }
@@ -63,7 +62,6 @@ public class PlayerService {
                 .orElseThrow(() -> new IllegalArgumentException("Player not found with ID: " + playerId));
     }
 
-
     public Player updatePlayer(Integer playerId, Player updatedPlayer) {
         Player existingPlayer = playerRepository.findById(playerId)
                 .orElseThrow(() -> new IllegalArgumentException("Player not found with ID: " + playerId));
@@ -83,6 +81,9 @@ public class PlayerService {
 
         if (updatedPlayer.getPlayerEmail() != null && !updatedPlayer.getPlayerEmail().isBlank()
                 && !updatedPlayer.getPlayerEmail().equalsIgnoreCase(existingPlayer.getPlayerEmail())) {
+            if (!updatedPlayer.getPlayerEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
+                throw new IllegalArgumentException("Invalid email format");
+            }
             existingPlayer.setPlayerEmail(updatedPlayer.getPlayerEmail().toLowerCase());
             update = true;
         }
