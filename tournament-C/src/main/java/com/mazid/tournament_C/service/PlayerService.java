@@ -86,4 +86,8 @@ public class PlayerService {
         return existingPlayer;
     }
 
+    public String deletePlayer(Integer playerId) {
+        playerRepository.deleteById(playerId);
+        return "Player id " + playerId + " deleted successfully!";
+    }
 }

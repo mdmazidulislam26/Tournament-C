@@ -22,4 +22,9 @@ public class PlayerController {
     public Player updatePlayer(@PathVariable Integer playerId, @RequestBody Player player) {
         return playerService.updatePlayer(playerId, player);
     }
+
+    @DeleteMapping("/DeletePlayer/{playerId}")
+    public String deletePlayer(@PathVariable Integer playerId) {
+        return playerService.deletePlayer(playerId);
+    }
 }
