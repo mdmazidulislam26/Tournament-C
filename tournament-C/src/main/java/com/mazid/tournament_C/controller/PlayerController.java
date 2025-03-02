@@ -25,6 +25,11 @@ public class PlayerController {
         return playerService.getPlayerList();
     }
 
+    @GetMapping("/GetPlayer/{playerId}")
+    public Player getPlayer(@PathVariable Integer playerId) {
+        return playerService.getPlayer(playerId);
+    }
+
     @PutMapping("/UpdatePlayer/{playerId}")
     public Player updatePlayer(@PathVariable Integer playerId, @RequestBody Player player) {
         return playerService.updatePlayer(playerId, player);
