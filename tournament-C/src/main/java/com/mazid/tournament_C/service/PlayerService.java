@@ -5,6 +5,7 @@ import com.mazid.tournament_C.repository.PlayerRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,6 +54,11 @@ public class PlayerService {
         return playerRepository.save(player);
     }
 
+    public List<Player> getPlayerList() {
+        return playerRepository.findAll();
+    }
+
+
     public Player updatePlayer(Integer playerId, Player updatedPlayer) {
         Player existingPlayer = playerRepository.findById(playerId)
                 .orElseThrow(() -> new IllegalArgumentException("Player not found with ID: " + playerId));
@@ -90,4 +96,6 @@ public class PlayerService {
         playerRepository.deleteById(playerId);
         return "Player id " + playerId + " deleted successfully!";
     }
+
+
 }

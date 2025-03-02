@@ -4,6 +4,8 @@ import com.mazid.tournament_C.model.Player;
 import com.mazid.tournament_C.service.PlayerService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class PlayerController {
 
@@ -16,6 +18,11 @@ public class PlayerController {
     @PostMapping("/CreatePlayer")
     public Player createPlayer(@RequestBody Player player) {
         return playerService.createPlayer(player);
+    }
+
+    @GetMapping("/GetPlayerList")
+    public List<Player> getPlayerList() {
+        return playerService.getPlayerList();
     }
 
     @PutMapping("/UpdatePlayer/{playerId}")
