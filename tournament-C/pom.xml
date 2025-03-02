@@ -60,6 +60,27 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Jakarta Bean Validation API (Jakarta Validation) -->
+<!--		<dependency>-->
+<!--			<groupId>jakarta.validation</groupId>-->
+<!--			<artifactId>jakarta.validation-api</artifactId>-->
+<!--			<version>3.0.0</version>-->
+<!--		</dependency>-->
+
+		<!-- Hibernate Validator (Jakarta Validation API) -->
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate.validator</groupId>-->
+<!--			<artifactId>hibernate-validator</artifactId>-->
+<!--			<version>7.0.2.Final</version>-->
+<!--		</dependency>-->
+
+		<!-- Java 8 Date/Time API -->
+<!--		<dependency>-->
+<!--			<groupId>org.glassfish</groupId>-->
+<!--			<artifactId>javax.el</artifactId>-->
+<!--			<version>3.0.0</version>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>

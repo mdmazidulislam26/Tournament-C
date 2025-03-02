@@ -3,6 +3,7 @@ package com.mazid.tournament_C.controller;
 import com.mazid.tournament_C.dto.MatchDTO;
 import com.mazid.tournament_C.model.Match;
 import com.mazid.tournament_C.service.MatchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
