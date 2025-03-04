@@ -123,10 +123,12 @@ public class TeamService {
 
 
     public String deleteTeam(Integer teamId) {
-
-        teamRepository.findById(teamId).orElseThrow(() -> new NoDataFoundException("Team not found"));
-
+        Team team = teamRepository.findById(teamId).orElseThrow(() -> new NoDataFoundException("Team not found with this id: "+teamId));
         teamRepository.deleteById(teamId);
-        return "Team deleted successfully";
+        return team.getTeamName()+" Team deleted successfully";
+    }
+
+    public Team getTeam(Integer teamId) {
+        return teamRepository.findById(teamId).orElseThrow(() -> new NoDataFoundException("Team not found with this id: "+teamId));
     }
 }
