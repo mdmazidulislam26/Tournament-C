@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/team")
 public class TeamController {
 
     private final TeamService teamService;
@@ -16,19 +17,23 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    @PostMapping("/CreateTeam")
+    @PostMapping("/create")
     public Team createTeam(@RequestBody Team team) {
         return teamService.createTeam(team);
     }
 
-    @GetMapping("/TeamList")
+    @GetMapping("/list")
     public List<TeamDTO> getAllTeams() {
         return teamService.getAllTeams();
     }
 
-    @PutMapping("/UpdateTeam/{teamId}")
+    @PutMapping("/update/{teamId}")
     public Team updateTeam(@PathVariable Integer teamId, @RequestBody Team team) {
         return teamService.updateTeam(teamId, team);
+    }
 
+    @DeleteMapping("/delete/{teamId}")
+    public String deleteTeam(@PathVariable Integer teamId) {
+        return teamService.deleteTeam(teamId);
     }
 }

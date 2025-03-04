@@ -120,4 +120,13 @@ public class TeamService {
 
         return existingTeam;
     }
+
+
+    public String deleteTeam(Integer teamId) {
+
+        teamRepository.findById(teamId).orElseThrow(() -> new NoDataFoundException("Team not found"));
+
+        teamRepository.deleteById(teamId);
+        return "Team deleted successfully";
+    }
 }
