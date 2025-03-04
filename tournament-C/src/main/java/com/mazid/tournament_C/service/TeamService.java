@@ -25,6 +25,7 @@ public class TeamService {
         if (teamName == null || teamName.trim().isEmpty()) {
             throw new IllegalArgumentException("Team name cannot be null or empty");
         }
+        teamName = teamName.toLowerCase();
         team.setTeamName(teamName.substring(0, 1).toUpperCase() + teamName.substring(1));
         return teamRepository.save(team);
     }
@@ -47,70 +48,71 @@ public class TeamService {
 
         if (team.getTeamName() != null
                 && !team.getTeamName().isBlank()
-                && !team.getTeamName().equals(existingTeam.getTeamName())
+                && !(team.getTeamName().substring(0, 1).toUpperCase() + team.getTeamName().substring(1).toLowerCase()).equals(existingTeam.getTeamName())
         ) {
-            existingTeam.setTeamName(team.getTeamName().substring(0, 1).toUpperCase() + team.getTeamName().substring(1));
+            System.out.println(1);
+            existingTeam.setTeamName(team.getTeamName().substring(0, 1).toUpperCase() + team.getTeamName().substring(1).toLowerCase());
             update = true;
         }
 
 
         if (team.getPlayer1() != null && !team.getPlayer1().isBlank() && !team.getPlayer1().equals(existingTeam.getPlayer1())) {
-            existingTeam.setPlayer1(team.getPlayer1());
+            existingTeam.setPlayer1(team.getPlayer1().substring(0, 1).toUpperCase() + team.getPlayer1().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer2() != null && !team.getPlayer2().isBlank() && !team.getPlayer2().equals(existingTeam.getPlayer2())) {
-            existingTeam.setPlayer2(team.getPlayer2());
+            existingTeam.setPlayer2(team.getPlayer2().substring(0, 1).toUpperCase() + team.getPlayer2().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer3() != null && !team.getPlayer3().isBlank() && !team.getPlayer3().equals(existingTeam.getPlayer3())) {
-            existingTeam.setPlayer3(team.getPlayer3());
+            existingTeam.setPlayer3(team.getPlayer3().substring(0, 1).toUpperCase() + team.getPlayer3().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer4() != null && !team.getPlayer4().isBlank() && !team.getPlayer4().equals(existingTeam.getPlayer4())) {
-            existingTeam.setPlayer4(team.getPlayer4());
+            existingTeam.setPlayer4(team.getPlayer4().substring(0, 1).toUpperCase() + team.getPlayer4().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer5() != null && !team.getPlayer5().isBlank() && !team.getPlayer5().equals(existingTeam.getPlayer5())) {
-            existingTeam.setPlayer5(team.getPlayer5());
+            existingTeam.setPlayer5(team.getPlayer5().substring(0, 1).toUpperCase() + team.getPlayer5().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer6() != null && !team.getPlayer6().isBlank() && !team.getPlayer6().equals(existingTeam.getPlayer6())) {
-            existingTeam.setPlayer6(team.getPlayer6());
+            existingTeam.setPlayer6(team.getPlayer6().substring(0, 1).toUpperCase() + team.getPlayer6().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer7() != null && !team.getPlayer7().isBlank() && !team.getPlayer7().equals(existingTeam.getPlayer7())) {
-            existingTeam.setPlayer7(team.getPlayer7());
+            existingTeam.setPlayer7(team.getPlayer7().substring(0, 1).toUpperCase() + team.getPlayer7().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer8() != null && !team.getPlayer8().isBlank() && !team.getPlayer8().equals(existingTeam.getPlayer8())) {
-            existingTeam.setPlayer8(team.getPlayer8());
+            existingTeam.setPlayer8(team.getPlayer8().substring(0, 1).toUpperCase() + team.getPlayer8().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer9() != null && !team.getPlayer9().isBlank() && !team.getPlayer9().equals(existingTeam.getPlayer9())) {
-            existingTeam.setPlayer9(team.getPlayer9());
+            existingTeam.setPlayer9(team.getPlayer9().substring(0, 1).toUpperCase() + team.getPlayer9().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer10() != null && !team.getPlayer10().isBlank() && !team.getPlayer10().equals(existingTeam.getPlayer10())) {
-            existingTeam.setPlayer10(team.getPlayer10());
+            existingTeam.setPlayer10(team.getPlayer10().substring(0, 1).toUpperCase() + team.getPlayer10().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getPlayer11() != null && !team.getPlayer11().isBlank() && !team.getPlayer11().equals(existingTeam.getPlayer11())) {
-            existingTeam.setPlayer11(team.getPlayer11());
+            existingTeam.setPlayer11(team.getPlayer11().substring(0, 1).toUpperCase() + team.getPlayer11().substring(1).toLowerCase());
             update = true;
         }
 
         if (team.getTeamCaptain() != null && !team.getTeamCaptain().isBlank() && !team.getTeamCaptain().equals(existingTeam.getTeamCaptain())) {
-            existingTeam.setTeamCaptain(team.getTeamCaptain());
+            existingTeam.setTeamCaptain(team.getTeamCaptain().substring(0, 1).toUpperCase() + team.getTeamCaptain().substring(1).toLowerCase());
             update = true;
         }
 
