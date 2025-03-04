@@ -3,10 +3,7 @@ package com.mazid.tournament_C.controller;
 import com.mazid.tournament_C.dto.TeamDTO;
 import com.mazid.tournament_C.model.Team;
 import com.mazid.tournament_C.service.TeamService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,11 @@ public class TeamController {
     @GetMapping("/TeamList")
     public List<TeamDTO> getAllTeams() {
         return teamService.getAllTeams();
+    }
+
+    @PutMapping("/UpdateTeam/{teamId}")
+    public Team updateTeam(@PathVariable Integer teamId, @RequestBody Team team) {
+        return teamService.updateTeam(teamId, team);
+
     }
 }

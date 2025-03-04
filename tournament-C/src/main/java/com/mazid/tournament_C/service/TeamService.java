@@ -36,4 +36,86 @@ public class TeamService {
         }
         return teams;
     }
+
+    public Team updateTeam(Integer teamId, Team team) {
+        Team existingTeam = teamRepository.findById(teamId).orElse(null);
+        if (existingTeam == null) {
+            throw new NoDataFoundException("Team not found with ID: " + teamId);
+        }
+
+        boolean update = false;
+
+        if (team.getTeamName() != null
+                && !team.getTeamName().isBlank()
+                && !team.getTeamName().equals(existingTeam.getTeamName())
+        ) {
+            existingTeam.setTeamName(team.getTeamName().substring(0, 1).toUpperCase() + team.getTeamName().substring(1));
+            update = true;
+        }
+
+
+        if (team.getPlayer1() != null && !team.getPlayer1().isBlank() && !team.getPlayer1().equals(existingTeam.getPlayer1())) {
+            existingTeam.setPlayer1(team.getPlayer1());
+            update = true;
+        }
+
+        if (team.getPlayer2() != null && !team.getPlayer2().isBlank() && !team.getPlayer2().equals(existingTeam.getPlayer2())) {
+            existingTeam.setPlayer2(team.getPlayer2());
+            update = true;
+        }
+
+        if (team.getPlayer3() != null && !team.getPlayer3().isBlank() && !team.getPlayer3().equals(existingTeam.getPlayer3())) {
+            existingTeam.setPlayer3(team.getPlayer3());
+            update = true;
+        }
+
+        if (team.getPlayer4() != null && !team.getPlayer4().isBlank() && !team.getPlayer4().equals(existingTeam.getPlayer4())) {
+            existingTeam.setPlayer4(team.getPlayer4());
+            update = true;
+        }
+
+        if (team.getPlayer5() != null && !team.getPlayer5().isBlank() && !team.getPlayer5().equals(existingTeam.getPlayer5())) {
+            existingTeam.setPlayer5(team.getPlayer5());
+            update = true;
+        }
+
+        if (team.getPlayer6() != null && !team.getPlayer6().isBlank() && !team.getPlayer6().equals(existingTeam.getPlayer6())) {
+            existingTeam.setPlayer6(team.getPlayer6());
+            update = true;
+        }
+
+        if (team.getPlayer7() != null && !team.getPlayer7().isBlank() && !team.getPlayer7().equals(existingTeam.getPlayer7())) {
+            existingTeam.setPlayer7(team.getPlayer7());
+            update = true;
+        }
+
+        if (team.getPlayer8() != null && !team.getPlayer8().isBlank() && !team.getPlayer8().equals(existingTeam.getPlayer8())) {
+            existingTeam.setPlayer8(team.getPlayer8());
+            update = true;
+        }
+
+        if (team.getPlayer9() != null && !team.getPlayer9().isBlank() && !team.getPlayer9().equals(existingTeam.getPlayer9())) {
+            existingTeam.setPlayer9(team.getPlayer9());
+            update = true;
+        }
+
+        if (team.getPlayer10() != null && !team.getPlayer10().isBlank() && !team.getPlayer10().equals(existingTeam.getPlayer10())) {
+            existingTeam.setPlayer10(team.getPlayer10());
+            update = true;
+        }
+
+        if (team.getPlayer11() != null && !team.getPlayer11().isBlank() && !team.getPlayer11().equals(existingTeam.getPlayer11())) {
+            existingTeam.setPlayer11(team.getPlayer11());
+            update = true;
+        }
+
+        if (team.getTeamCaptain() != null && !team.getTeamCaptain().isBlank() && !team.getTeamCaptain().equals(existingTeam.getTeamCaptain())) {
+            existingTeam.setTeamCaptain(team.getTeamCaptain());
+            update = true;
+        }
+
+        if (update)return teamRepository.save(existingTeam);
+
+        return existingTeam;
+    }
 }
