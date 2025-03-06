@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/match")
 public class MatchController {
 
     private final MatchService matchService;
@@ -34,17 +35,17 @@ public class MatchController {
         return matchService.getAllMatches();
     }
 
-    @PostMapping("/CreateMatch")
+    @PostMapping("/create")
     public Match createMatch(@RequestBody Match match) {
         return matchService.createMatch(match);
     }
 
-    @PutMapping("/UpdateMatch/{matchId}")
+    @PutMapping("/update/{matchId}")
     public Match updateMatch(@PathVariable Integer matchId, @RequestBody Match match) {
         return matchService.updateMatch(matchId,match);
     }
 
-    @DeleteMapping("/DeleteMatch/{matchId}")
+    @DeleteMapping("/delete/{matchId}")
     public String deleteMatch(@PathVariable Integer matchId){
         return matchService.deleteMatch(matchId);
     }
