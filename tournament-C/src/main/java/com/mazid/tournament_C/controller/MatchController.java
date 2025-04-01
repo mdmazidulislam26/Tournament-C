@@ -1,4 +1,4 @@
-package com.mazid.tournament_C.controller
+package com.mazid.tournament_C.controller;
 
 import com.mazid.tournament_C.dto.MatchDTO;
 import com.mazid.tournament_C.model.Match;
